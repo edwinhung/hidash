@@ -1,4 +1,5 @@
 const { forEach, map } = require("./index");
+const assert = require("assert");
 
 const test = (desc, fn) => {
   console.log("----", desc);
@@ -15,9 +16,7 @@ test("Test for forEach", () => {
     sum += value;
   });
 
-  if (sum !== 6) {
-    throw new Error("Expected summing array equal to 6");
-  }
+  assert.strictEqual(sum, 6);
 });
 
 test("Test for map", () => {
@@ -25,13 +24,5 @@ test("Test for map", () => {
     return value * 2;
   });
 
-  if (result[0] !== 2) {
-    throw new Error(`Expected 2, but found ${result[0]}`);
-  }
-  if (result[1] !== 4) {
-    throw new Error(`Expected 4, but found ${result[1]}`);
-  }
-  if (result[2] !== 6) {
-    throw new Error(`Expected 6, but found ${result[2]}`);
-  }
+  assert.deepStrictEqual(result, [2, 4, 6]);
 });
